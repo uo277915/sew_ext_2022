@@ -1,3 +1,16 @@
+/* INICIO GENERAL */
+
+body {
+    color: white;
+    background-color: #333333;
+}
+
+img, video {
+    height: 50vh;
+    width: auto;
+}
+
+/* FIN GENERAL */
 
 /* INICIO NAV */
 
@@ -42,7 +55,7 @@ nav > ul > li > a:hover {
 
 /* Especificidad: (0, 1, 5) */
 nav > ul > li > a > img {
-    height: 2vh;
+    height: 1em;
 }
 
 /* FIN NAV */
