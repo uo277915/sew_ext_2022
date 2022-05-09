@@ -1,0 +1,61 @@
+/* INICIO GENERAL */
+
+body {
+    color: white;
+    background-color: #333333;
+}
+
+img, video {
+    height: 50vh;
+    width: auto;
+}
+
+/* FIN GENERAL */
+
+/* INICIO NAV */
+
+/* Especificidad: (0, 0, 2) */
+nav > ul {
+
+    /* Seleccionamos el estilo basico del sistema de navegación */
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+
+    /* Cambiamos el color de fondo y heredamos el color de texto del cuerpo */
+    background-color: #333;
+    /* color: heredado de body */
+}
+
+/* Especificidad: (0, 0, 3) */
+nav > ul > li {
+    /* Hacemos que los elementos se coloquen a la izquierda de la página */
+    float: left;
+    margin-left: 0;
+}
+
+/* Especificidad: (0, 0, 4) */
+nav > ul > li > a {
+    /* Creamos un botón a partir del enlace */
+    display: block;
+    color: #ffffff;
+    background-color: #1f1f1f;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Especificidad: (0, 1, 4) */
+nav > ul > li > a:hover {
+    /* Hacemos que al poner el ratón sobre el botón, este cambie de color de fondo, pero no de texto */
+    background-color: #111;
+    /* background-color: heredado de body */
+}
+
+/* Especificidad: (0, 1, 5) */
+nav > ul > li > a > img {
+    height: 1em;
+}
+
+/* FIN NAV */
