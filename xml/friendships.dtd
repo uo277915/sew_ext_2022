@@ -1,0 +1,23 @@
+<!ELEMENT usuarios (usuario*)>
+<!ELEMENT usuario (datos?, amigos?)>
+<!ELEMENT datos (fechaNacimiento, estado, fotoPerfil?)>
+<!ELEMENT fechaNacimiento (#PCDATA)>
+<!ELEMENT estado (#PCDATA)>
+<!ELEMENT fotoPerfil (#PCDATA)>
+<!ELEMENT amigos (usuario*)>
+
+<!ATTLIST   usuario
+            id          CDATA   #REQUIRED
+            nickname    CDATA   #REQUIRED
+>
+<!ATTLIST   fechaNacimiento
+            dia         CDATA   #REQUIRED
+            mes         CDATA   #REQUIRED
+            año         CDATA   #REQUIRED
+>
+<!ATTLIST   estado
+            mensaje     CDATA   #REQUIRED
+>
+<!ATTLIST   fotoPerfil
+            href         CDATA   #REQUIRED
+>

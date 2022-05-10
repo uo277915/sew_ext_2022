@@ -44,9 +44,12 @@ class GameManager {
             "<h3> Géneros: </h3>" +
             "<ul>";
 
+            if(data.genres.length > 0){
         for (const genreID of data.genres) {
             let genre = await speedrunAPIManager.getGenre(genreID);
             content += "<li>" + genre + "</li>";
+        }} else {
+            content += "<li> No especificado </li>";
         }
 
         content += "</ul>";
