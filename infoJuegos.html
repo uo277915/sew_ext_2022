@@ -6,14 +6,15 @@
     <!-- Datos que describen el documento -->
     <meta charset="UTF-8" />
     <title>Es Tim! - Eventos</title>
-    <meta name="description" content="Pagina de localización de eventos de videojuegos por el mundo.">
+    <meta name="description"
+        content="Pagina de información sobre diferentes videojuegos, mayoritariamente juegos de desarrolladores independientes.">
     <meta name="author" content="Andrés Martínez Rodríguez, UO277915">
     <meta name="keywords" content="videogames, games, steam, gaming, juegos, videojuegos, jugar">
     <meta name="viewport" content="width=device-width, initial scale=1.0" />
     <link rel="icon" href="media/img/logo.png" type="image/x-icon" />
     <link rel="stylesheet" type="text/css" href="css/general.css" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="js/eventManager.js"></script>
+    <script src="js/gameManager.js"></script>
 </head>
 
 <nav>
@@ -31,14 +32,15 @@
 
 <body>
     <section>
-        <h1>¿Dónde están los eventos principales?</h1>
+        <h1>Información de videojuegos</h1>
         <select>
-            <option value=0>E3</option>
-            <option value=1>Gamescom</option>
-            <option value=2>MineCon</option>
+            <option value=0>Celeste</option>
+            <option value=1>Undertale</option>
+            <option value=2>Minecraft</option>
+            <option value=3>Stardew Valley</option>
+            <option value=4>Cuphead</option>
         </select>
-        <button onclick="eventManager.selectEvent()">Buscar Evento</button>
-        <!-- Sección añadida para poder añadir dentro la información desde JS sin necesidad de un id. -->
+        <button onclick="gameManager.selectGame()">Ver datos del juego</button>
         <section></section>
     </section>
 </body>
