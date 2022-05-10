@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE usuarios SYSTEM "friendships.dtd">
+
+<usuarios >
+    <usuario id="1" nickname="sitoo">
+        <datos>
+            <fechaNacimiento dia='28' mes='10' año='2001' />
+            <estado mensaje="Jugando un rato!" />
+            <fotoPerfil href="media/img/usuarios/user1" />
+        </datos>
+        <amigos>
+            <usuario id="2" nickname="paquiLaJugadora">
+                <datos>
+                    <fechaNacimiento dia='17' mes='6' año='2006' />
+                    <estado mensaje="LOL jajaja" />
+                    <fotoPerfil href="media/img/usuarios/user2" />
+                </datos>
+            </usuario>
+            <usuario id="3" nickname="juanito33">
+                <datos>
+                    <fechaNacimiento dia='20' mes='5' año='1997' />
+                    <estado mensaje="Soy un buen gamer" />
+                </datos>
+                <amigos>
+                    <usuario id="2" nickname="paquiLaJugadora">
+                    </usuario>
+                    <usuario id="4" nickname="willirex">
+                        <datos>
+                            <fechaNacimiento dia='1' mes='1' año='1985' />
+                            <estado mensaje="Compra mis nfts!!" />
+                            <fotoPerfil href="media/img/usuarios/willy" />
+                        </datos>
+                    </usuario>
+                    <usuario id="5" nickname="peterlanguila">
+                        <datos>
+                            <fechaNacimiento dia='5' mes='5' año='1970' />
+                            <estado mensaje="uwu" />
+                            <fotoPerfil href="media/img/usuarios/user5" />
+                        </datos>
+                        <amigos>
+                            <usuario id="7" nickname="juanito">
+                                <datos>
+                                    <fechaNacimiento dia='30' mes='11' año='2002' />
+                                    <estado mensaje="holiii" />
+                                    <fotoPerfil href="media/img/usuarios/user7" />
+                                </datos>
+                                <amigos>
+                                    <usuario id="1" nickname="sitoo">
+                                    </usuario>
+                                </amigos>
+                            </usuario>
+                        </amigos>
+                    </usuario>
+                    <usuario id="6" nickname="eldiablo666">
+                        <datos>
+                            <fechaNacimiento dia='6' mes='6' año='2006' />
+                            <estado mensaje="¡MUAJAJAJAJA!" />
+                            <fotoPerfil href="media/img/usuarios/user6" />
+                        </datos>
+                        <amigos>
+                            <usuario id="4" nickname="willirex">
+                            </usuario>
+                        </amigos>
+                    </usuario>
+                </amigos>
+            </usuario>
+        </amigos>
+    </usuario>
+</usuarios>
