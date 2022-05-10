@@ -12,33 +12,33 @@ const eventLocations = [{ latitude: 34.0403207, longitude: -118.2695624 }, { lat
 class EventManager {
 
     selectEvent() {
-        eventManager.eventID = $("select").val();
+        this.eventID = $("select").val();
 
-        eventManager.name = eventNames[eventManager.eventID];
-        eventManager.description = eventDescription[eventManager.eventID];
-        eventManager.date = eventDates[eventManager.eventID];
-        eventManager.location = eventLocations[eventManager.eventID];
+        this.name = eventNames[this.eventID];
+        this.description = eventDescription[this.eventID];
+        this.date = eventDates[this.eventID];
+        this.location = eventLocations[this.eventID];
 
-        eventManager.#printData();
+        this.#printData();
     }
 
     #printData() {
         $("body>section>section").html(
-            "<h2>" + eventManager.name + "</h2>" +
+            "<h2>" + this.name + "</h2>" +
             // Si no hay geolocation no se añade el botón
-            (mapManager.userLocation != null ? "<button onclick=\"mapManager.showDistance()\"> Mostrar Distancia </button>" : "") +
-            "<button onclick=\"mapManager.showEvent()\"> Mostrar Evento </button>" +
-            "<button onclick=\"mapManager.showStreet()\"> Mostrar Vista de Pájaro </button>" +
+            (mapManager.userLocation != null ? "<button onclick=\"mapManager.showDistance(eventManager)\"> Mostrar Distancia </button>" : "") +
+            "<button onclick=\"mapManager.showEvent(eventManager)\"> Mostrar Evento </button>" +
+            "<button onclick=\"mapManager.showStreet(eventManager)\"> Mostrar Vista de Pájaro </button>" +
             "<h3> Mapa: </h3>" +
             // Se añade al img un onerror por si la API falla el usuario vea una imagen de error.
             "<img src=\"media/img/mapNotAvailable.png\" alt= \"Mapa con el evento seleccionado\" onerror= \"this.src='media/img/mapNotAvailable.png'\" />" +
             "<h3> Descripción: </h3>" +
-            "<p>" + eventManager.description + "</p>" +
+            "<p>" + this.description + "</p>" +
             "<h3> Cuando será: </h3>" +
-            "<p> ¡Dentro de " + Math.ceil((eventManager.date.getTime() - new Date().getTime()) / (1000 * 3600 * 24)) + " días! </p>"
+            "<p> ¡Dentro de " + Math.ceil((this.date.getTime() - new Date().getTime()) / (1000 * 3600 * 24)) + " días! </p>"
         );
 
-        eventManager.map = mapManager.updateMap();
+        this.map = mapManager.updateMap(this);
     }
 
 }
@@ -53,12 +53,12 @@ class MapManager {
 
     }
 
-    updateMap() {
+    updateMap(em) {
         if (mapManager.userLocation != null) {
-            mapManager.showDistance();
+            mapManager.showDistance(em);
         } else {
             // Geolocalization does not work
-            mapManager.showEvent();
+            mapManager.showEvent(em);
         }
 
         return mapManager.url;
@@ -68,18 +68,18 @@ class MapManager {
         $("body>section>section>img").attr("src", mapManager.url);
     }
 
-    showEvent() {
+    showEvent(em) {
         mapManager.url = APIURL
-            + "pp=" + eventManager.location.latitude + "," + eventManager.location.longitude + ";;" + eventManager.name
+            + "pp=" + em.location.latitude + "," + em.location.longitude + ";;" + em.name
             + "&key=" + APIKEY;
 
         mapManager.updateImage();
     }
 
-    showDistance() {
+    showDistance(em) {
         if (mapManager.userLocation != null) {
             mapManager.url = APIURL
-                + "pp=" + eventManager.location.latitude + "," + eventManager.location.longitude + ";;" + eventManager.name
+                + "pp=" + em.location.latitude + "," + em.location.longitude + ";;" + em.name
                 + "&pp=" + mapManager.userLocation.coords.latitude + "," + mapManager.userLocation.coords.longitude + ";;" + "Usted"
                 + "&key=" + APIKEY;
 
@@ -89,9 +89,9 @@ class MapManager {
         }
     }
 
-    showStreet() {
+    showStreet(em) {
         mapManager.url = "https://dev.virtualearth.net/REST/V1/Imagery/Map/Birdseye/"
-            + eventManager.location.latitude + "," + eventManager.location.longitude
+            + em.location.latitude + "," + em.location.longitude
             + "/20?dir=270&ms=900,700&key=" + APIKEY;
 
         mapManager.updateImage();
