@@ -6,14 +6,14 @@
         <datos>
             <fechaNacimiento dia='28' mes='10' año='2001' />
             <estado mensaje="Jugando un rato!" />
-            <fotoPerfil href="media/img/usuarios/user1" />
+            <fotoPerfil href="media/img/usuarios/user1.png" />
         </datos>
         <amigos>
             <usuario id="2" nickname="paquiLaJugadora">
                 <datos>
                     <fechaNacimiento dia='17' mes='6' año='2006' />
                     <estado mensaje="LOL jajaja" />
-                    <fotoPerfil href="media/img/usuarios/user2" />
+                    <fotoPerfil href="media/img/usuarios/user2.png" />
                 </datos>
             </usuario>
             <usuario id="3" nickname="juanito33">
@@ -28,21 +28,21 @@
                         <datos>
                             <fechaNacimiento dia='1' mes='1' año='1985' />
                             <estado mensaje="Compra mis nfts!!" />
-                            <fotoPerfil href="media/img/usuarios/willy" />
+                            <fotoPerfil href="media/img/usuarios/willy.png" />
                         </datos>
                     </usuario>
                     <usuario id="5" nickname="peterlanguila">
                         <datos>
                             <fechaNacimiento dia='5' mes='5' año='1970' />
                             <estado mensaje="uwu" />
-                            <fotoPerfil href="media/img/usuarios/user5" />
+                            <fotoPerfil href="media/img/usuarios/user5.png" />
                         </datos>
                         <amigos>
                             <usuario id="7" nickname="juanito">
                                 <datos>
                                     <fechaNacimiento dia='30' mes='11' año='2002' />
                                     <estado mensaje="holiii" />
-                                    <fotoPerfil href="media/img/usuarios/user7" />
+                                    <fotoPerfil href="media/img/usuarios/user7.png" />
                                 </datos>
                                 <amigos>
                                     <usuario id="1" nickname="sitoo">
@@ -55,7 +55,7 @@
                         <datos>
                             <fechaNacimiento dia='6' mes='6' año='2006' />
                             <estado mensaje="¡MUAJAJAJAJA!" />
-                            <fotoPerfil href="media/img/usuarios/user6" />
+                            <fotoPerfil href="media/img/usuarios/user6.png" />
                         </datos>
                         <amigos>
                             <usuario id="4" nickname="willirex">
