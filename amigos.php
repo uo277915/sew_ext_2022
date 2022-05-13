@@ -16,18 +16,22 @@
     <script src="js/fileProcessor.js"></script>
 </head>
 
-<nav>
-    <ul>
-        <li><a href="index.html"> <img src="media/img/logo.png" alt="Logo de la página web"/> </a></li>
-        <li><a href="index.html"> Inicio </a></li>
-        <li><a href="historiaVideojuegos.html"> Historia </a></li>
-        <li><a href="opinion.html"> Tu Opinión </a></li>
-        <li><a href="eventos.html"> Información Eventos </a></li>
-        <li><a href="infoJuegos.html"> Información Juegos </a></li>
-        <li><a href="buscarJuegos.php"> Buscador Juegos </a></li>
-        <li><a href="amigos.php"> Amigos </a></li>
-    </ul>
-</nav>
+<header>
+    <nav>
+        <ul>
+            <li><a href="index.html"> <img src="media/img/logo.png" alt="Logo de la página web"/> </a></li>
+            <li><a href="index.html"> Inicio </a></li>
+            <li><a href="historiaVideojuegos.html"> Historia </a></li>
+            <li><a href="opinion.html"> Tu Opinión </a></li>
+            <li><a href="eventos.html"> Información Eventos </a></li>
+            <li><a href="infoJuegos.html"> Información Juegos </a></li>
+            <li><a href="buscarJuegos.php"> Buscador Juegos </a></li>
+            <li><a href="amigos.php"> Amigos </a></li>
+        </ul>
+    </nav>
+
+    <h1> Relaciones de Amistad </h1>
+</header>
 
 <body>
     <?php
@@ -55,8 +59,6 @@
 
     // Mostramos el inicio de la página
     echo "
-        <h1> Relaciones de Amistad </h1>
-        
         <section>
             <form action='' method='post'>
                 <fieldset>
