@@ -31,22 +31,29 @@
 
 <body>
     <?php
+    // Iniciamos una sesión para evitar acceder a la base de datos lo más posible.
     session_start();
 
+    /** Controlador de la base de datos general */
     $dbController = new DataBaseController();
+    /** Controlador de la videojuegos general */
     $userController = new UserController();
 
+    // Inicializamos el texto de la area de texto.
     $textAreaText = "";
 
+    // Si el usuario ha elegido procesar el XML lo procesamos
     if (isset($_POST["submitProcess"])) {
         $input = $_POST["processedFile"];
         $textAreaText = $userController->processUsers($input, $dbController);
     }
 
+    // Si el usuario pide recargar la base de datos, la recargamos.
     if (isset($_POST["reloadDB"])) {
         $dbController->reloadDatabase();
     }
 
+    // Mostramos el inicio de la página
     echo "
         <h1> Relaciones de Amistad </h1>
         
@@ -66,12 +73,22 @@
             </form>
         </section>";
 
+    // Mostramos los usuarios.
     $userController->showUsers($_SESSION["usuarios"]);
 
     #region Controladores
 
+    /**
+     * Clase que controla los usuarios
+     * @author uo277915
+     */
     class UserController
     {
+        /**
+         * Muestra los usuarios en la página.
+         *
+         * @param Usuario[] $users Lista de usuarios a mostrar.
+         */
         public function showUsers($users)
         {
             foreach ($users as $user) {
@@ -106,10 +123,19 @@
             }
         }
 
+        /**
+         * Procesa el JSON obtenido de ECMAScript.
+         *
+         * @param string $input El texto con el JSON.
+         * @param DataBaseController $dbController El controlador de la base de datos.
+         * @return string El texto después de procesar.
+         */
         public function processUsers($input, $dbController)
         {
+            // Descodificamos la string a JSON.
             $json = json_decode($input, true);
 
+            // Procesamos cada usuario.
             foreach ($json["XML"]["usuarios"] as $user) {
                 $id = $user["id"];
                 $nickname = $user["nickname"];
@@ -133,6 +159,7 @@
                     $profilePic = $user["profilePic"];
                 }
 
+                // Creamos los usuarios
                 $dbController->createUser(
                     new Usuario(
                         $id,
@@ -146,6 +173,7 @@
                 );
             }
 
+            // Procesamos las amistades
             foreach ($json["XML"]["amistades"] as $friends) {
                 $senderID = $friends["sender_id"];
                 $receiverID = $friends["receiver_id"];
@@ -159,16 +187,42 @@
         }
     }
 
+    
+    /**
+     * Clase encargada de controlar la base de datos.
+     * @author uo277915
+     */
     class DataBaseController
     {
+         /**
+         * Nombre del servidor
+         * @var string
+         */
         private $serverName;
+        /**
+         * Usuario de la base de datos
+         * @var string
+         */
         private $username;
+        /**
+         * contraseña de la base de datos
+         * @var string
+         */
         private $password;
-        private $db;
+        /**
+         * Nombre de la base de datos
+         * @var string
+         */
         private $dbName;
+        /**
+         * Puntero a la base de datos
+         * @var mysqli
+         */
+        private $db;
 
-        private $juegos;
-
+        /**
+         * Inicializa los datos de la base.
+         */
         public function __construct()
         {
             $this->serverName = "localhost";
@@ -181,6 +235,9 @@
             $this->init();
         }
 
+        /**
+         * Creamos la base de datos si no existe aún.
+         */
         private function createDB()
         {
             $conn = new mysqli("localhost", "DBUSER2021", "DBPSWD2021", "");
@@ -217,6 +274,9 @@
             }
         }
 
+        /**
+         * Inicializa las diferentes variables de la sesión.
+         */
         private function init()
         {
             $this->loadGenres();
@@ -227,8 +287,12 @@
             $this->loadFriends();
         }
 
+       /**
+         * Reinicia la base de datos.
+         */
         public function reloadDatabase()
         {
+            // Nos conectamos a SQL.
             $conn = new mysqli(
                 $this->serverName,
                 $this->username,
@@ -236,6 +300,7 @@
                 ""
             );
 
+            // Comprobamos si ya existe la base.
             $result = mysqli_query(
                 $conn,
                 "SELECT SCHEMA_NAME
@@ -243,10 +308,12 @@
             WHERE SCHEMA_NAME = 'estimdb'"
             );
 
+            // Si existe la borramos
             if ($result->num_rows != 0) {
                 mysqli_query($conn, "DROP DATABASE $this->dbName");
             }
 
+            // Creamos la base de datos desde 0.
             $sqlScript = file("estimdb.sql");
             $query = "";
             foreach ($sqlScript as $line) {
@@ -269,8 +336,10 @@
                 }
             }
 
+            // Cerramos la conexión.
             $conn->close();
 
+            // Reiniciamos las variables de sesión.
             $_SESSION["juegos"] = [];
             $_SESSION["usuarios"] = [];
             $_SESSION["categorías"] = [];
@@ -278,6 +347,9 @@
             $this->init();
         }
 
+        /**
+         * Carga los juegos de la base de datos en la sesión.
+         */
         private function loadGames()
         {
             if (empty($_SESSION["juegos"])) {
@@ -303,6 +375,9 @@
             }
         }
 
+        /**
+         * Carga los géneros de la base de datos en la sesión.
+         */
         private function loadGenres()
         {
             if (empty($_SESSION["categorías"])) {
@@ -326,6 +401,9 @@
             }
         }
 
+        /**
+         * Carga los usuarios de la base de datos en la sesión.
+         */
         private function loadUsers()
         {
             if (empty($_SESSION["usuarios"])) {
@@ -333,6 +411,9 @@
             }
         }
 
+        /**
+         * Carga los usuarios de la base de datos de forma forzosa en la sesión.
+         */
         private function forceLoadUsers()
         {
             $_SESSION["usuarios"] = [];
@@ -358,6 +439,9 @@
             $this->db->close();
         }
 
+        /**
+         * Carga los juegos que juega cada usuario de la base de datos en la sesión.
+         */
         private function loadPlaysForUser()
         {
             $this->connectDB();
@@ -383,6 +467,10 @@
             $this->db->close();
         }
 
+        
+        /**
+         * Carga las amistades de la base de datos en la sesión.
+         */
         private function loadFriends()
         {
             $this->connectDB();
@@ -412,6 +500,11 @@
             $this->db->close();
         }
 
+        /**
+         * Crea un usuario en la base de datos.
+         *
+         * @param Usuario $user Usuario a añadir.
+         */
         public function createUser($user)
         {
             $old = $this->getUser($user->id);
@@ -439,6 +532,12 @@
             }
         }
 
+        /**
+         * Crea una amistad entre dos usuarios en la base de datos.
+         *
+         * @param string $senderID ID del usuario que inició amistad. 
+         * @param string $receiverID ID del segundo usuario de la amistad.
+         */
         public function createFriendship($senderID, $receiverID)
         {
             $exists = $this->existsFriendship($senderID, $receiverID);
@@ -460,6 +559,12 @@
             }
         }
 
+        /**
+         * Devuelve un usuario de la base de datos.
+         *
+         * @param string $id ID del usuario a buscar.
+         * @return (Usuario|null) usuario encontrado.
+         */
         private function getUser($id)
         {
             $this->connectDB();
@@ -486,6 +591,13 @@
             return $user;
         }
 
+        /**
+         * Comprueba si existe una amistad entre dos usuarios.
+         *
+         * @param string $senderID ID del usuario que inició amistad. 
+         * @param string $receiverID ID del segundo usuario de la amistad.
+         * @return boolean whether it exists.
+         */
         private function existsFriendship($senderID, $receiverID)
         {
             $this->connectDB();
@@ -503,6 +615,9 @@
             return $exists;
         }
 
+        /**
+         * Recarga los amigos de la base de datos.
+         */
         public function updateFriends()
         {
             $this->forceLoadUsers();
@@ -510,11 +625,19 @@
             $this->loadFriends();
         }
 
+        /**
+         * Devuelve el texto del procesado.
+         *
+         * @return string El texto tras procesar.
+         */
         public function getOutput()
         {
             return $this->output;
         }
 
+        /**
+         * Conecta al usuario en la base de datos.
+         */
         private function connectDB()
         {
             $this->db = new mysqli(
@@ -530,15 +653,58 @@
 
     #region Clases de objetos
 
+    /**
+     * Clase que representa un videojuego.
+     * @author uo277915
+     */
     class VideoJuego
     {
+        /**
+         * Código que describe el videojuego.
+         *
+         * @var string
+         */
         public $code;
+        /**
+         * Nombre del videojuego.
+         *
+         * @var string
+         */
         public $name;
+        /**
+         * Categoría del videojuego.
+         *
+         * @var Category
+         */
         public $category;
+        /**
+         * Descripción del videojuego.
+         *
+         * @var string
+         */
         public $description;
+        /**
+         * Precio del videojuego.
+         *
+         * @var double
+         */
         public $price;
+        /**
+         * Jugadores que juegan el videojuego.
+         *
+         * @var Plays[]
+         */
         public $plays = [];
 
+        /**
+         * Inicializa el VideoJuego
+         *
+         * @param string $code Código que describe el videojuego.
+         * @param string $name Nombre del videojuego.
+         * @param Category $category Categoría del videojuego.
+         * @param string $description Descripción del videojuego.
+         * @param double $price Precio del videojuego.
+         */
         public function __construct(
             $code,
             $name,
@@ -553,18 +719,49 @@
             $this->price = $price;
         }
 
+        /**
+         * Establece los jugadores que juegan al juego.
+         *
+         * @param Play[] $plays Jugadores que juegan el videojuego.
+         */
         public function setPlays($plays)
         {
             $this->plays = $plays;
         }
     }
 
+   /**
+     * Clase que representa una categoría.
+     * @author uo277915
+     */
     class Categoria
     {
+        /**
+         * ID que describe la categoría.
+         *
+         * @var string
+         */
         public $id;
+        /**
+         * Nombre de la categoría.
+         *
+         * @var string
+         */
         public $name;
+        /**
+         * Descripción de la categoría.
+         *
+         * @var string
+         */
         public $description;
 
+        /**
+         * Inicializa la categoría.
+         *
+         * @param string $id ID que describe la categoría.
+         * @param string $name Nombre de la categoría.
+         * @param string $description Descripción de la categoría.
+         */
         public function __construct($id, $name, $description)
         {
             $this->id = $id;
@@ -573,18 +770,78 @@
         }
     }
 
+    /**
+     * Clase que representa un usuario.
+     * @author uo277915
+     */
     class Usuario
     {
+        /**
+         * ID que describe el usuario.
+         *
+         * @var string
+         */
         public $id;
+        /**
+         * Apodo del usuario.
+         *
+         * @var string
+         */
         public $nickname;
+        /**
+         * Estado del usuario.
+         *
+         * @var string
+         */
         public $status;
+        /**
+         * Dia del cumpleaños del usuario.
+         *
+         * @var number
+         */
         public $birthDay;
+        /**
+         * Mes del cumpleaños del usuario.
+         *
+         * @var number
+         */
         public $birthMonth;
+        /**
+         * Año del cumpleaños del usuario.
+         *
+         * @var number
+         */
         public $birthYear;
+        /**
+         * Enlace a la foto de perfil del usuario.
+         *
+         * @var string
+         */
         public $profilePic;
+        /**
+         * Lista de amigos.
+         *
+         * @var Usuario[]
+         */
         public $friends = [];
+        /**
+         * Juego favorito (con más horas jugadas).
+         *
+         * @var string
+         */
         public $favGamePlay = null;
-
+        
+        /**
+         * Inicializa el usuario.
+         *
+         * @param string $id ID que describe el usuario.
+         * @param string $nickname Apodo del usuario.
+         * @param string $status Estado del usuario.
+         * @param number $birthDay Dia del cumpleaños del usuario.
+         * @param number $birthMonth Mes del cumpleaños del usuario.
+         * @param number $birthYear Año del cumpleaños del usuario.
+         * @param string $profilePic Enlace a la foto de perfil del usuario.
+         */
         public function __construct(
             $id,
             $nickname,
@@ -603,23 +860,59 @@
             $this->profilePic = $profilePic;
         }
 
+        /**
+         * Establece las amistades del usuario
+         *
+         * @param Usuario[] $friends Lista de amistades del usuario.
+         */
         public function setFriends($friends)
         {
             $this->friends = $friends;
         }
 
+        /**
+         * Establece el juego favorito del usuario.
+         *
+         * @param VideoJuego $game Juego favorito del usuario.
+         */
         public function setfavGamePlay($game)
         {
             $this->favGamePlay = $game;
         }
     }
 
+    /**
+     * Clase que representa un usuario jugando a un juego.
+     * @author uo277915
+     */
     class Plays
     {
+        /**
+         * Juego que juega el usuario.
+         *
+         * @var VideoJuego
+         */
         public $game;
+        /**
+         * Usuario que juega el juego.
+         *
+         * @var Usuario
+         */
         public $user;
+        /**
+         * Tiempo, en horas, que se ha jugado al juego.
+         *
+         * @var number
+         */
         public $timePlayed;
 
+        /**
+         * Inicializa la clase.
+         *
+         * @param VideoJuego $game Juego que juega el usuario.
+         * @param Usuario $user Usuario que juega el juego.
+         * @param number $timePlayed Tiempo, en horas, que se ha jugado al juego.
+         */
         public function __construct($game, $user, $timePlayed)
         {
             $this->game = $game;
@@ -627,6 +920,8 @@
             $this->timePlayed = $timePlayed;
         }
     }
+
+    //@uo277915
 
 #endregion
 ?>
