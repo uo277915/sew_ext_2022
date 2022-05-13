@@ -1,61 +1,273 @@
 /* INICIO GENERAL */
 
 body {
-    color: white;
+    background-image: url("../media/img/background.png");
+    /* La imagen de fondo no se mueve */
+    background-repeat: no-repeat;
+    /* La imagen de fondo no se mueve */
+    background-attachment: fixed;
+    background-size: cover;
+
+    /* Ponemos un color por si hay algún problema con la imagen */
     background-color: #333333;
+    color: white;
+
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+    margin-bottom: 10vh;
 }
 
-img, video {
-    height: 50vh;
-    width: auto;
+img,
+video {
+    border-radius: 1vw;
+
+    width: 20vw;
+    height: auto;
+
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
+
+a {
+    color: aqua;
+}
+
+a:hover {
+    color: orange;
+}
+
+a > button {
+    background-color: white;
+    color: black;
+
+    padding: .5vw;
+
+    font-size: 150%;
+    border-radius: 1vw;
+
+    display: block;
+    margin-left: auto;
+}
+
+button:hover {
+    background-color: aqua;
+    /* Color del texto heredado. */
+
+}
+
+h1 {
+    font-size: 300%;
+    text-align: center;
+    color: aqua;
+}
+
+h2 {
+    color: #00CCCC;
+    text-transform: uppercase;
+}
+
+h3 {
+    color: #00CCCC;
+}
+
+header {
+    display: block;
+    overflow: auto;
+    margin: 0px;
+
+    background-color: rgb(0, 0, 0, 0.5);
+    top: 0;
+    width: 100%;
+}
+
+footer {
+    background-color: rgb(0, 0, 0, 0.7);
+
+    padding: .5%;
+    margin: 0;
+
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+ul {
+    margin-bottom: 1%;
+}
+
 
 /* FIN GENERAL */
 
 /* INICIO NAV */
 
-/* Especificidad: (0, 0, 2) */
-nav > ul {
-
-    /* Seleccionamos el estilo basico del sistema de navegación */
+nav>ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-
-    /* Cambiamos el color de fondo y heredamos el color de texto del cuerpo */
-    background-color: #333;
-    /* color: heredado de body */
+    background-color: black;
+    /* Color del texto heredado. */
+    border-radius: 1vw;
 }
 
-/* Especificidad: (0, 0, 3) */
-nav > ul > li {
-    /* Hacemos que los elementos se coloquen a la izquierda de la página */
+nav>ul>li {
     float: left;
-    margin-left: 0;
 }
 
-/* Especificidad: (0, 0, 4) */
-nav > ul > li > a {
-    /* Creamos un botón a partir del enlace */
+nav>ul>li>a {
     display: block;
-    color: #ffffff;
-    background-color: #1f1f1f;
+    color: white;
+    /* Color del fondo heredado. */
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
 }
 
-/* Especificidad: (0, 1, 4) */
-nav > ul > li > a:hover {
-    /* Hacemos que al poner el ratón sobre el botón, este cambie de color de fondo, pero no de texto */
-    background-color: #111;
-    /* background-color: heredado de body */
+nav>ul>li>a:hover {
+    background-color: aqua;
+    color: black;
 }
 
-/* Especificidad: (0, 1, 5) */
-nav > ul > li > a > img {
-    height: 1em;
+nav>ul>li>a>img {
+    width: 1rem;
+    height: auto;
 }
 
 /* FIN NAV */
+
+/* INICIO SECTION */
+
+section {
+    /* Color del texto heredado. */
+    background-color: rgb(0, 0, 0, 0.8);
+
+    border-radius: 2vw;
+    margin: 2%;
+    padding: 1%;
+}
+
+/* FIN SECTION */
+
+/* INICIO TABLE */
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+
+table td,
+table th, table caption {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+table tr:hover {
+    background-color: rgba(0, 255, 255, 0.5);
+    color: black;
+}
+
+table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: aqua;
+    color: black;
+}
+
+table caption {
+    font-size: 150%;
+}
+
+/* FIN TABLE */
+
+/* INICIO SELECT */
+
+select {
+    display: block;
+    margin: 0 auto;
+
+    border-radius: 1vw;
+    font-size: 200%;
+
+    text-align: center;
+}
+
+button {
+    display: block;
+    margin: 0 auto;
+
+    border-radius: 1vw;
+    font-size: 200%;
+
+    text-align: center;
+}
+
+section > section > button {
+    display: inline;
+    font-size: 100%;
+    border-radius: .2vw;
+
+    text-align: center;
+}
+
+/* FIN SELECT */
+
+/* INICIO FORM */
+
+fieldset {
+    background-color: rgb(20, 20, 20, 0.6);
+    border-radius: 1vw;
+
+    border: none;
+}
+
+input, textArea {
+    background-color: azure;
+    border-radius: .3vw;
+
+    border-color: rgb(0, 151, 151);
+    margin-bottom: 1vh;
+}
+
+input[type="submit"] {
+    background-color: white;
+    color: black;
+    
+    padding: .5vw;
+
+    border-radius: 1vw;
+
+    display: block;
+    margin: 0 auto;
+}
+
+form > select {
+    display: block;
+    margin: 2vh auto 1vh auto;
+
+    border-radius: 1vw;
+    font-size: 150%;
+
+    text-align: center;
+}
+
+input[name="searchTerm"] {
+    display: block;
+    margin: 0 auto 1vh auto;
+
+    border-radius: 1vw;
+    font-size: 150%;
+
+    text-align: center;
+
+    margin-top: 2vh;
+
+}
+
+input[type=file] {
+    background: none;
+}
+
+/* FIN FORM */
