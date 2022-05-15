@@ -15,31 +15,33 @@
 
 </head>
 
-<header>
-    <nav>
-        <ul>
-            <li><a href="index.html"> <img src="media/img/logo.png" alt="Logo de la página web" /> </a></li>
-            <li><a href="index.html"> Inicio </a></li>
-            <li><a href="historiaVideojuegos.html"> Historia </a></li>
-            <li><a href="opinion.html"> Tu Opinión </a></li>
-            <li><a href="eventos.html"> Información Eventos </a></li>
-            <li><a href="infoJuegos.html"> Información Juegos </a></li>
-            <li><a href="buscarJuegos.php"> Buscador Juegos </a></li>
-            <li><a href="amigos.php"> Amigos </a></li>
-        </ul>
-    </nav>
-
-    <h1> Secciones de EsTim! </h1>
-</header>
-
 <body>
-    
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html"> <img src="media/img/logo.png" alt="Logo de la página web" /> </a></li>
+                <li><a href="index.html"> Inicio </a></li>
+                <li><a href="historiaVideojuegos.html"> Historia </a></li>
+                <li><a href="opinion.html"> Tu Opinión </a></li>
+                <li><a href="eventos.html"> Información Eventos </a></li>
+                <li><a href="infoJuegos.html"> Información Juegos </a></li>
+                <li><a href="buscarJuegos.php"> Buscador Juegos </a></li>
+                <li><a href="amigos.php"> Amigos </a></li>
+            </ul>
+        </nav>
+
+        <h1> Secciones de EsTim! </h1>
+    </header>
+
     <section>
         <h2>Historia de los videojuegos</h2>
         <p>Esta página contiene un pequeño artículo que habla sobre la historia de los videojuegos.</p>
         <img src="media/img/índice/historiaVideojuegos.png"
             alt="Niño sosteniendo un mando de una Nintendo 64, una consola antigua." />
-        <a href="historiaVideojuegos.html"><button> Ir a página </button></a>
+        <form action="historiaVideojuegos.html" method="get">
+            <button> Ir a página </button>
+        </form>
     </section>
 
     <section>
@@ -47,14 +49,18 @@
         <p>Esta página contiene un formulario en el que nos puedes contar tu opinión sobre diferentes temas sobre
             videojuegos.</p>
         <img src="media/img/índice/opinion.png" alt="Un dibujo representando un formulario." />
-        <a href="opinion.html"><button> Ir a página </button></a>
+        <form action="opinion.html" method="get">
+            <button> Ir a página </button>
+        </form>
     </section>
 
     <section>
         <h2>Información de eventos</h2>
         <p>Esta página contiene información sobre diferentes eventos de videojuegos.</p>
         <img src="media/img/índice/eventos.png" alt="Imagen de un evento de videojuegos." />
-        <a href="eventos.html"><button> Ir a página </button></a>
+        <form action="eventos.html" method="get">
+            <button> Ir a página </button>
+        </form>
     </section>
 
     <section>
@@ -63,7 +69,9 @@
             independientes</p>
         <img src="media/img/índice/infoJuegos.png"
             alt="Imagen de un grupo de personajes principales de videojuegos famosos." />
-        <a href="infoJuegos.html"><button> Ir a página </button></a>
+        <form action="infoJuegos.html" method="get">
+            <button> Ir a página </button>
+        </form>
     </section>
 
     <section>
@@ -71,7 +79,9 @@
         <p>Buscador de juegos que se pueden encontrar en la base de datos de la página para jugar a ellos.</p>
         <img src="media/img/índice/buscarJuegos.png"
             alt="Imagen de varias capturas de pantalla de videojuegos famosos." />
-        <a href="buscarJuegos.php"><button> Ir a página </button></a>
+        <form action="buscarJuegos.php" method="get">
+            <button> Ir a página </button>
+        </form>
     </section>
 
     <section>
@@ -79,13 +89,15 @@
         <p>Esta página contiene un registro de los usuarios del sistema y de sus relaciones de amistad. En ella también
             puedes procesar un archivo de amistad para registrar nuevas relaciones.</p>
         <img src="media/img/índice/amigos.png" alt="Dibujo de un grupo de amigos charlando." />
-        <a href="amigos.php"><button> Ir a página </button></a>
+        <form action="amigos.php" method="get">
+            <button> Ir a página </button>
+        </form>
     </section>
 
-</body>
+    <footer>
+        <p> Hecho por: Andrés Martínez, uo277915. </p>
+    </footer>
 
-<footer>
-    <p> Hecho por: Andrés Martínez, uo277915. </p>
-</footer>
+</body>
 
 </html>

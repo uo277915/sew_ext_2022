@@ -17,26 +17,27 @@
     <script src="js/gameManager.js"></script>
 </head>
 
-<header>
-    <nav>
-        <ul>
-            <li><a href="index.html"> <img src="media/img/logo.png" alt="Logo de la página web" /> </a></li>
-            <li><a href="index.html"> Inicio </a></li>
-            <li><a href="historiaVideojuegos.html"> Historia </a></li>
-            <li><a href="opinion.html"> Tu Opinión </a></li>
-            <li><a href="eventos.html"> Información Eventos </a></li>
-            <li><a href="infoJuegos.html"> Información Juegos </a></li>
-            <li><a href="buscarJuegos.php"> Buscador Juegos </a></li>
-            <li><a href="amigos.php"> Amigos </a></li>
-        </ul>
-    </nav>
-    
-    <h1>Información de videojuegos</h1>
-</header>
-
-
 <body>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html"> <img src="media/img/logo.png" alt="Logo de la página web" /> </a></li>
+                <li><a href="index.html"> Inicio </a></li>
+                <li><a href="historiaVideojuegos.html"> Historia </a></li>
+                <li><a href="opinion.html"> Tu Opinión </a></li>
+                <li><a href="eventos.html"> Información Eventos </a></li>
+                <li><a href="infoJuegos.html"> Información Juegos </a></li>
+                <li><a href="buscarJuegos.php"> Buscador Juegos </a></li>
+                <li><a href="amigos.php"> Amigos </a></li>
+            </ul>
+        </nav>
+        
+        <h1>Información de videojuegos</h1>
+    </header>
+
     <section>
+        <h2> ¡Selecciona un juego para continuar! </h2>
         <select>
             <option value=0>Celeste</option>
             <option value=1>Undertale</option>
@@ -45,12 +46,15 @@
             <option value=4>Cuphead</option>
         </select>
         <button onclick="gameManager.selectGame()">Ver datos del juego</button>
-        <section></section>
+        <section>
+            <h3> ¡Aquí irá la información del juego! </h3>
+        </section>
     </section>
+    
+    <footer>
+        <p> Hecho por: Andrés Martínez, uo277915. </p>
+    </footer>
 </body>
 
-<footer>
-    <p> Hecho por: Andrés Martínez, uo277915. </p>
-</footer>
 
 </html>

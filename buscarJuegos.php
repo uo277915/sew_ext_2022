@@ -13,24 +13,25 @@
     <link rel="stylesheet" type="text/css" href="css/general.css"/>
 </head>
 
-<header>
-    <nav>
-        <ul>
-            <li><a href="index.html"> <img src="media/img/logo.png" alt="Logo de la página web"/> </a></li>
-            <li><a href="index.html"> Inicio </a></li>
-            <li><a href="historiaVideojuegos.html"> Historia </a></li>
-            <li><a href="opinion.html"> Tu Opinión </a></li>
-            <li><a href="eventos.html"> Información Eventos </a></li>
-            <li><a href="infoJuegos.html"> Información Juegos </a></li>
-            <li><a href="buscarJuegos.php"> Buscador Juegos </a></li>
-            <li><a href="amigos.php"> Amigos </a></li>
-        </ul>
-    </nav>
-
-    <h1> Buscador de Juegos </h1>
-</header>
-
 <body>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html"> <img src="media/img/logo.png" alt="Logo de la página web"/> </a></li>
+                <li><a href="index.html"> Inicio </a></li>
+                <li><a href="historiaVideojuegos.html"> Historia </a></li>
+                <li><a href="opinion.html"> Tu Opinión </a></li>
+                <li><a href="eventos.html"> Información Eventos </a></li>
+                <li><a href="infoJuegos.html"> Información Juegos </a></li>
+                <li><a href="buscarJuegos.php"> Buscador Juegos </a></li>
+                <li><a href="amigos.php"> Amigos </a></li>
+            </ul>
+        </nav>
+
+        <h1> Buscador de Juegos </h1>
+    </header>
+
     <?php
     // Iniciamos una sesión para evitar acceder a la base de datos lo más posible.
     session_start();
@@ -59,12 +60,13 @@
     // Mostramos el inicio de la página
     echo "        
         <section>
-        <form action='' method='get'>
+        <h2> ¡Usa estas herramientas para buscar el juego que estás buscando! </h2>
+        <form action='#' method='get'>
             <input type=text name='searchTerm' />
             <input type=submit value='buscar' name='submitSearch'/>
         </form>
         
-        <form action='' method='get'>
+        <form action='#' method='get'>
             <select name='selection'>";
 
     echo "<option value=''> Categoría </option>";
@@ -735,14 +737,15 @@
     //@uo277915
     ?>
 
-    <form action='' method='POST'>
+    <form action='#' method='POST'>
         <input type="submit" name="reloadDB" value="Recargar Base de datos" />
     </form>
 
+    <footer>
+    <p> Hecho por: Andrés Martínez, uo277915. </p>
+    </footer>
+
 </body>
 
-<footer>
-    <p> Hecho por: Andrés Martínez, uo277915. </p>
-</footer>
 
 </html>
