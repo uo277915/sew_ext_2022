@@ -23,13 +23,18 @@
                 <li><a href="historiaVideojuegos.html"> Historia </a></li>
                 <li><a href="opinion.html"> Tu Opinión </a></li>
                 <li><a href="eventos.html"> Información Eventos </a></li>
-                <li><a href="infoJuegos.html"> Información Juegos </a></li>
+                <li><a href="infoJuegos.html"> Clasificaciones Juegos </a></li>
                 <li><a href="buscarJuegos.php"> Buscador Juegos </a></li>
                 <li><a href="amigos.php"> Amigos </a></li>
             </ul>
         </nav>
 
         <h1> Buscador de Juegos </h1>
+        
+        <section>
+            <p> En esta página puedes buscar los juegos que tenemos en el sistema. Puedes filtrar utilizando las herramientas a continuación. </p>
+            <p> Recuerda que si tienes problemas con la base de datos, puedes reiniciarla al final de esta página. </p>
+        </section>
     </header>
 
     <?php
@@ -52,9 +57,13 @@
     $searchTerm = "";
     $filter = "";
 
-    // Si el usuario ha seleccionado un filtro lo guardamos
-    if (isset($_GET["submitFilter"])) {
-        $filter = $_GET["selection"];
+    // Si el usuario ha seleccionado un filtro o buscado algo lo guardamos
+    if (isset($_GET["submitSearch"])) {
+        $searchTerm = $_GET["searchTerm"];
+
+        if (trim($searchTerm) == "") {
+            $filter = $_GET["selection"];
+        }
     }
 
     // Mostramos el inicio de la página
@@ -64,10 +73,7 @@
         <form action='#' method='get'>
             <label for='searchTerm'> Busca con la siguiente barra de búsqueda. </label>
             <input type=text name='searchTerm' id='searchTerm' />
-            <input type=submit value='buscar' name='submitSearch'/>
-        </form>
-        
-        <form action='#' method='get'>
+
             <label for='selection'> Puedes filtrar el genero con esta lista. </label>
             <select name='selection' id='selection'>";
 
@@ -81,16 +87,18 @@
     }
 
     echo " </select selected=''>
-        <input type=submit value='filtrar' name='submitFilter'/>
+        <input type=submit value='buscar' name='submitSearch'/>
         </form>";
 
-    // Si el usuario ha buscado algún texto lo guardamos
-    if (isset($_GET["submitSearch"])) {
-        $searchTerm = $_GET["searchTerm"];
-        echo "<p> Buscando el termino: <i>\"$searchTerm\"</i> </p>";
-    }
 
     echo "</section>";
+
+    if (trim($searchTerm) != "") {
+        echo "<p> Buscando el termino: <i>\"$searchTerm\"</i> </p>";
+    }
+    if ($filter != '') {
+        echo "<p> Se esta filtrando por género. </p>";
+    }
 
     // Obtenemos los juegos de la base de datos con el termino a buscar y el filtro seleccionados.
     /** Videojuegos que cumplen con la petición del usuario */
@@ -443,7 +451,7 @@
             $keyword = "WHERE";
 
             if (trim($searchTerm) !== "") {
-                $sql .= " $keyword name = '$searchTerm'";
+                $sql .= " $keyword name LIKE '%$searchTerm%'";
                 $keyword = "AND";
             }
 
@@ -451,6 +459,8 @@
                 $sql .= " $keyword category_id = '$filter'";
                 $keyword = "AND";
             }
+
+            $sql .= " ORDER BY name ";
 
             $result = $this->db->query($sql);
 

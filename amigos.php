@@ -26,13 +26,27 @@
                 <li><a href="historiaVideojuegos.html"> Historia </a></li>
                 <li><a href="opinion.html"> Tu Opinión </a></li>
                 <li><a href="eventos.html"> Información Eventos </a></li>
-                <li><a href="infoJuegos.html"> Información Juegos </a></li>
+                <li><a href="infoJuegos.html"> Clasificaciones Juegos </a></li>
                 <li><a href="buscarJuegos.php"> Buscador Juegos </a></li>
                 <li><a href="amigos.php"> Amigos </a></li>
             </ul>
         </nav>
 
         <h1> Relaciones de Amistad </h1>
+
+        <section>
+            <p> En esta página puedes procesar archivos XML con amistades, esto es muy simple. </p>
+            
+            <ul>
+                <li> Tienes que añadir el archivo en el <i> area de manejo de archivos. </i> </li>
+                <li> Una vez hecho esto podrás ver el archivo procesado en el <i> area de control </i>, pero no tienes que hacer nada con esto. </li>
+                <li> Entonces pulsas <i> Añadir al sistema </i> y todos los usuarios se añadirán </li>
+                <li> Puedes ver la comprobación en el <i> area de control. </i> </li>
+            </ul>
+        
+            <p> Recuerda que si tienes problemas con la base de datos, puedes reiniciarla al final de esta página. </p>
+        </section>
+
     </header>
 
     <?php
@@ -425,7 +439,7 @@
             $_SESSION["usuarios"] = [];
             $this->connectDB();
 
-            $sql = "SELECT * FROM user";
+            $sql = "SELECT * FROM user ORDER BY nickname";
             $result = $this->db->query($sql);
 
             if ($result->num_rows > 0) {

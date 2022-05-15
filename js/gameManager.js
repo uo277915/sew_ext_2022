@@ -103,6 +103,8 @@ class GameManager {
         content += "</ul>";
 
         let leaderboard = await speedrunAPIManager.getLeaderboard(this.gameID, this.leaderboardID);
+        
+        content += "<section>";
 
         content += "<h3> <a href=" + leaderboard["weblink"] + "> Clasificación: </a> </h3>";
 
@@ -118,6 +120,8 @@ class GameManager {
             content += "<p> Fecha de subida: " + run.run.date + " </p>"
             content += "<p> <a href='" + run.run.videos.links[0].uri + "'> Video del record </a></p>"
         }
+        
+        content += "</section>";
 
         // Los mostramos en la página.
         $("body>section>section").html(
