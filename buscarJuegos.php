@@ -18,7 +18,7 @@
     <header>
         <nav>
             <ul>
-                <li><a href="index.html"> <img src="media/img/logo.png" alt="Logo de la página web"/> </a></li>
+                <li><a href="/"> <img src="media/img/logo.png" alt="Logo de la página web"/> </a></li>
                 <li><a href="index.html"> Inicio </a></li>
                 <li><a href="historiaVideojuegos.html"> Historia </a></li>
                 <li><a href="opinion.html"> Tu Opinión </a></li>
@@ -62,12 +62,14 @@
         <section>
         <h2> ¡Usa estas herramientas para buscar el juego que estás buscando! </h2>
         <form action='#' method='get'>
-            <input type=text name='searchTerm' />
+            <label for='searchTerm'> Busca con la siguiente barra de búsqueda. </label>
+            <input type=text name='searchTerm' id='searchTerm' />
             <input type=submit value='buscar' name='submitSearch'/>
         </form>
         
         <form action='#' method='get'>
-            <select name='selection'>";
+            <label for='selection'> Puedes filtrar el genero con esta lista. </label>
+            <select name='selection' id='selection'>";
 
     echo "<option value=''> Categoría </option>";
 

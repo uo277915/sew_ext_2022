@@ -257,6 +257,7 @@ input, textArea {
     border-color: rgb(0, 151, 151);
 
     margin-bottom: 1vh;
+    display: block;
 }
 
 /* Especificidad: (0, 1, 1) */
@@ -305,6 +306,7 @@ input[name="searchTerm"] {
 /* Especificidad: (0, 1, 1) */
 input[type=file] {
     background: none;
+    display: block;
 }
 
 /* FIN FORM */

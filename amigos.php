@@ -21,7 +21,7 @@
     <header>
         <nav>
             <ul>
-                <li><a href="index.html"> <img src="media/img/logo.png" alt="Logo de la página web"/> </a></li>
+                <li><a href="/"> <img src="media/img/logo.png" alt="Logo de la página web"/> </a></li>
                 <li><a href="index.html"> Inicio </a></li>
                 <li><a href="historiaVideojuegos.html"> Historia </a></li>
                 <li><a href="opinion.html"> Tu Opinión </a></li>
@@ -64,13 +64,15 @@
         <h2> ¡Añade el archivo XML para procesarlo! </h2>
             <form action='#' method='post'>
                 <fieldset>
-                    <legend> Introduce tu archivo aquí </legend>
+                    <legend> Area de manejo de archivos </legend>
+                    <label for='inputFile'> Introduce tu archivo aquí </label>
                     <input type=file id='inputFile' name='inputFile' onchange='fileProcessor.processFile()' />
                 </fieldset>
 
                 <fieldset>
-                    <legend> Información del proceso </legend>
-                    <textArea readonly name='processedFile'>$textAreaText</textArea>
+                    <legend> Area de control </legend>
+                    <label for='processedFile'> Información del proceso </label>
+                    <textArea readonly name='processedFile' id='processedFile'>$textAreaText</textArea>
                 </fieldset>
 
                 <input type=submit value='Añadir al sistema' name='submitProcess' id='submitProcess' disabled/>
