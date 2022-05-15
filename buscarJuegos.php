@@ -180,7 +180,7 @@
             $this->serverName = "localhost";
             $this->username = "DBUSER2021";
             $this->password = "DBPSWD2021";
-            $this->dbName = "EsTimDB";
+            $this->dbName = "estimdb";
 
             $this->createDB();
             $this->init();
