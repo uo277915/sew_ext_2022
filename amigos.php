@@ -70,7 +70,7 @@
 
                 <fieldset>
                     <legend> Información del proceso </legend>
-                    <textArea readonly name='processedFile' rows=5 cols=50>$textAreaText</textArea>
+                    <textArea readonly name='processedFile'>$textAreaText</textArea>
                 </fieldset>
 
                 <input type=submit value='Añadir al sistema' name='submitProcess' id='submitProcess' disabled/>

@@ -78,9 +78,6 @@ class GameManager {
      * @param {Map} data Datos obtenidos desde la API. 
      */
     async #printData(data) {
-
-        console.log(data);
-
         let content = "";
 
         // Mostramos los datos generales del juego
@@ -113,7 +110,6 @@ class GameManager {
         for (let i = 0; i < 3; i++) {
             let run = leaderboard["runs"][i];
             let user = run.run.players[0].rel === "user" ? await speedrunAPIManager.getPlayer(run.run.players[0].id) : run.run.players[0].name;
-            console.log(run);
             content += "<h4> #" + run.place + " - " + user + " </h4>"
             content += "<p> Tiempo: " + Utils.sToTime(run.run.times["primary_t"]) + " </p>"
             if (run.run.comment !== null) {
@@ -186,7 +182,6 @@ class SpeedrunAPIManager {
      * @returns {{}} Los datos generales del usuario.
      */
     async getPlayer(userId) {
-        console.log(userId)
         this.url = APIURL + "users/" + userId;
 
         return await this.#loadData().then((data) => {
