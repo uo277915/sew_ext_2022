@@ -36,7 +36,7 @@
 
         <section>
             <p> En esta página puedes procesar archivos XML con amistades, esto es muy simple. </p>
-            
+
             <ul>
                 <li> Tienes que añadir el archivo en el <i> area de manejo de archivos. </i> </li>
                 <li> Una vez hecho esto podrás ver el archivo procesado en el <i> area de control </i>, pero no tienes que hacer nada con esto. </li>
@@ -496,7 +496,7 @@
             $this->connectDB();
 
             foreach ($_SESSION["usuarios"] as $user) {
-                $sql = "SELECT * FROM friendsWith WHERE senderID = '$user->id' OR receiverID = '$user->id'";
+                $sql = "SELECT * FROM friendswith WHERE senderID = '$user->id' OR receiverID = '$user->id'";
 
                 $result = $this->db->query($sql);
 
