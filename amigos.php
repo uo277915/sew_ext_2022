@@ -35,6 +35,7 @@
         <h1> Relaciones de Amistad </h1>
 
         <section>
+            <h2>Descripción: </h2>
             <p> En esta página puedes procesar archivos XML con amistades, esto es muy simple. </p>
 
             <ul>

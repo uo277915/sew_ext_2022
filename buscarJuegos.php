@@ -32,6 +32,7 @@
         <h1> Buscador de Juegos </h1>
         
         <section>
+            <h2>Descripción: </h2>
             <p> En esta página puedes buscar los juegos que tenemos en el sistema. Puedes filtrar utilizando las herramientas a continuación. </p>
             <p> Recuerda que si tienes problemas con la base de datos, puedes reiniciarla al final de esta página. </p>
         </section>
